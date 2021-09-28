@@ -2,7 +2,7 @@
 
 ***Pronounced like "Wizard"***
 
-This is a hobby project for getting the most out of Philips WiZ devices. Currently the Philips WiZ lineup only includes lightbulbs, so that's all that this gem supports.
+This is a hobby project for getting the most out of Philips WiZ devices. Currently the Philips WiZ lineup only includes light bulbs, so that's all that this gem supports.
 
 NOTE: Compatability may vary since I only own Philips WiZ RGB (ESP01_SHRGB1C_31) bulbs to test with.
 
