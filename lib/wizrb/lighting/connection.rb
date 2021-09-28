@@ -16,57 +16,58 @@ module Wizrb
       end
 
       def connect
-        @socket.connect(@ip, @port)
-        log('Connected')
-      rescue StandardError
-        log('Error!')
-        raise Wizrb::ConnectionError, 'Failed to connect to device'
+        with_error_logging do
+          @socket.connect(@ip, @port)
+          log('Connected')
+        end
       end
 
       def send(data)
-        connect
-        log("Sending: #{data.to_json}")
-        @socket.send(data.to_json.encode('UTF-8'), 0)
-      rescue StandardError
-        log('Error!')
-        raise Wizrb::ConnectionError, 'Failed to send data to device'
+        with_error_logging do
+          connect
+          log("Sending: #{data.to_json}")
+          @socket.send(data.to_json.encode('UTF-8'), 0)
+        end
       end
 
       def recieve(timeout: 2, max: 1024)
-        connect
+        with_error_logging do
+          connect
 
-        Timeout.timeout(timeout, Wizrb::ConnectionTimeoutError) do
-          data, _addr = @socket.recvfrom(max)
-          log("Recieved: #{data}")
-
-          response = JSON.parse(data)
-          raise Wizrb::ConnectionError, response['error'] if response.key?('error')
-
-          response
+          Timeout.timeout(timeout, Wizrb::ConnectionTimeoutError) do
+            data, _addr = @socket.recvfrom(max)
+            log("Recieved: #{data}")
+            parse_response(data)
+          end
         end
-      rescue Wizrb::ConnectionTimeoutError
-        log('Timeout!')
-        raise
-      rescue Wizrb::ConnectionError
-        log('Error!')
-        raise
-      rescue StandardError
-        log('Error!')
-        raise Wizrb::ConnectionError, 'Failed to recieve data from device'
       end
 
       def test
-        send({ method: 'getPilot', params: {} })
-        recieve
-      rescue StandardError
-        log('Error!')
-        raise Wizrb::ConnectionError, 'Failed to test device connection'
+        with_error_logging do
+          send({ method: 'getPilot', params: {} })
+          recieve
+        end
       end
 
       private
 
+      def parse_response(data)
+        response = JSON.parse(data)
+
+        raise Wizrb::ConnectionError, response['error'] if response.key?('error')
+
+        response
+      end
+
       def log(message)
         puts "[Wizrb::Connection##{@connection_id} #{@ip}:#{@port}] #{message}" if ENV['DEBUG']
+      end
+
+      def with_error_logging
+        yield
+      rescue StandardError => e
+        log("Error: #{e.message}")
+        raise
       end
     end
   end

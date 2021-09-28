@@ -7,6 +7,9 @@ RSpec::Core::RakeTask.new(:spec)
 
 require 'rubocop/rake_task'
 
-RuboCop::RakeTask.new
+RuboCop::RakeTask.new do |task|
+  task.requires << 'rubocop-performance'
+  task.requires << 'rubocop-rspec'
+end
 
 task default: %i[spec rubocop]
