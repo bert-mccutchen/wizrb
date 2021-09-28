@@ -49,7 +49,7 @@ module Wizrb
         private
 
         def dispatch(events, sync: false)
-          if sync
+          if sync || Random.rand > 0.5
             @group.dispatch_events(*events)
           else
             @group.bulbs.sample.dispatch_events(*events)

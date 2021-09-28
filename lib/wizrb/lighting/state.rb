@@ -48,7 +48,7 @@ module Wizrb
       end
 
       def scene
-        Wizrb::SCENES.key(@state[:schdPsetId] || @state[:sceneId])
+        Wizrb::Lighting::SCENES.key(@state[:schdPsetId] || @state[:sceneId])
       end
 
       def to_s
