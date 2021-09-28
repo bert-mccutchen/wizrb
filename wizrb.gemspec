@@ -6,10 +6,10 @@ Gem::Specification.new do |spec|
   spec.name          = 'wizrb'
   spec.version       = Wizrb::VERSION
   spec.authors       = ['Bert McCutchen']
-  spec.email         = ['bmccutchen@infotech.com']
+  spec.email         = ['mail@bertm.dev']
 
-  spec.summary       = 'State management for Philips Wiz lightbulbs.'
-  spec.description   = 'Manage the state of your Philips Wiz lightbulbs.'
+  spec.summary       = 'State management for Philips WiZ devices.'
+  spec.description   = 'Manage the state of your Philips WiZ devices.'
   spec.homepage      = 'https://github.com/bert-mccutchen/wizrb'
   spec.license       = 'MIT'
   spec.required_ruby_version = '>= 3.0.0'

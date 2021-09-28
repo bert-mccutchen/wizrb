@@ -29,14 +29,22 @@ module Wizrb
         @bulbs = []
       end
 
-      def all
+      def all(filters: {})
         open_socket
-        listen_registration
+        listen_registration(filters)
         dispatch_registration
         sleep(@wait)
         close_registration
         close_socket
         Wizrb::Lighting::Group.new(bulbs: @bulbs)
+      end
+
+      def home(id)
+        all(filters: { 'homeId' => id })
+      end
+
+      def room(id)
+        all(filters: { 'roomId' => id })
       end
 
       private
@@ -51,7 +59,7 @@ module Wizrb
         end
       end
 
-      def listen_registration
+      def listen_registration(filters = {})
         @listening = true
 
         @socket.bind(BIND_ADDR, PORT)
@@ -60,7 +68,7 @@ module Wizrb
           while @listening
             data, addr = @socket.recvfrom(65_536)
             bulb = parse_response(data, addr)
-            @bulbs << bulb unless bulb.nil?
+            @bulbs << bulb if bulb && (filters.to_a - bulb.system_config.to_a).empty?
           end
         end
       end

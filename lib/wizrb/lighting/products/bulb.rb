@@ -26,6 +26,18 @@ module Wizrb
           refresh
         end
 
+        def system_config
+          @system_config ||= dispatch({ method: 'getSystemConfig', params: {} })&.dig('result')
+        end
+
+        def model_config
+          @model_config ||= dispatch({ method: 'getModelConfig', params: {} })&.dig('result')
+        end
+
+        def user_config
+          @user_config ||= dispatch({ method: 'getUserConfig', params: {} })&.dig('result')
+        end
+
         def bulb_type
           @bulb_type ||= system_config&.dig('moduleName')
         end
@@ -93,18 +105,6 @@ module Wizrb
         def dispatch(data)
           @connection.send(data)
           @connection.recieve(timeout: 10, max: 65_536)
-        end
-
-        def system_config
-          @system_config ||= dispatch({ method: 'getSystemConfig', params: {} })&.dig('result')
-        end
-
-        def model_config
-          @model_config ||= dispatch({ method: 'getModelConfig', params: {} })&.dig('result')
-        end
-
-        def user_config
-          @user_config ||= dispatch({ method: 'getUserConfig', params: {} })&.dig('result')
         end
       end
     end
