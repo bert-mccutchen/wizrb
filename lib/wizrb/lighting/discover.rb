@@ -22,7 +22,8 @@ module Wizrb
         }
       }.to_json
 
-      def initialize
+      def initialize(wait: 2)
+        @wait = wait
         @listening = false
         @thread = nil
         @bulbs = []
@@ -32,7 +33,7 @@ module Wizrb
         open_socket
         listen_registration
         dispatch_registration
-        sleep(2)
+        sleep(@wait)
         close_registration
         close_socket
         Wizrb::Lighting::Group.new(bulbs: @bulbs)
