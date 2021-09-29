@@ -3,11 +3,14 @@
 ***Pronounced like "Wizard"***
 
 This is a hobby project for getting the most out of Philips WiZ devices. Currently this project only supports Philips WiZ light bulbs. If you would like to support this project, donations to buy new types of Philips WiZ accessories or coffee will be much appreciated!
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M76DVZR)
 
 #### Compatability Notice
 
 Compatability may vary since I only own [Philips WiZ Bulb A19 E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556136/) bulbs to test with.
+
+Testers with other (supported) Philips WiZ devices are welcome!
 
 #### Tested Devices:
 * [ ] Bulb A19 E26 (Dimmable)
