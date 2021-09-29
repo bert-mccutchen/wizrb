@@ -2,9 +2,38 @@
 
 ***Pronounced like "Wizard"***
 
-This is a hobby project for getting the most out of Philips WiZ devices. Currently the Philips WiZ lineup only includes light bulbs, so that's all that this gem supports.
+This is a hobby project for getting the most out of Philips WiZ devices. Currently this project only supports Philips WiZ light bulbs. If you would like to support this project, donations to buy new types of Philips WiZ accessories or coffee will be much appreciated!
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M76DVZR)
 
-NOTE: Compatability may vary since I only own Philips WiZ RGB (ESP01_SHRGB1C_31) bulbs to test with.
+#### Compatability Notice
+
+Compatability may vary since I only own [Philips WiZ Bulb A19 E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556136/) bulbs to test with.
+
+#### Tested Devices:
+* [ ] Bulb A19 E26 (Dimmable)
+* [ ] Bulb A19 E26 (Tunable white)
+* [x] Bulb A19 E26 (Full color)
+* [ ] Bulb A21 E26 (Full color)
+* [ ] Candle B12 E12 (Full color)
+* [ ] Filament amber A19 E26 (Dimmable)
+* [ ] Filament amber G25 E26 (Dimmable)
+* [ ] Filament amber ST19 E26 (Dimmable)
+* [ ] Filament clear A19 E26 (Dimmable)
+* [ ] Filament clear G25 E26 (Dimmable)
+* [ ] Filament clear ST19 E26 (Dimmable)
+* [ ] Reflector BR30 E26 (Dimmable)
+* [ ] Reflector BR30 E26 (Tunable white)
+* [ ] Reflector BR30 E26 (Full color)
+* [ ] Spot PAR38 E26 (Tunable white)
+* [ ] Spot PAR16 GU10 (Full color)
+* [ ] LED Strip Starter kit 2m (Full color)
+* [ ] LED Strip Extension 1m (Full color)
+* [ ] Recessed downlight 6" E26 (Tunable white)
+* [ ] Recessed downlight 6" E26 (Full color)
+* [ ] Portable (Full color)
+
+#### Unsupported Devices:
+* [x] Smart Plug (Type B)
 
 ## Installation
 
