@@ -47,18 +47,18 @@ module Wizrb
         def validate!(value)
           return if value.is_a?(Wizrb::Lighting::Group)
 
-          raise Wizrb::Error, 'Scenes can only be activated on bulb groups'
+          raise Wizrb::Error, 'Scenes can only be activated on lighting groups'
         end
 
         def save_state
-          @state_events = @group.bulbs.map do |bulb|
-            Wizrb::Lighting::Events::Event.new(method: 'setState', params: bulb.refresh.state)
+          @state_events = @group.map do |light|
+            Wizrb::Lighting::Events::Event.new(method: 'setState', params: light.refresh.state)
           end
         end
 
         def restore_state
-          @group.bulbs.each_with_index do |bulb, i|
-            bulb.dispatch_event(@state_events[i])
+          @group.each_with_index do |light, i|
+            light.dispatch_event(@state_events[i])
           end
         end
       end

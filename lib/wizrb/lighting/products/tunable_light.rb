@@ -1,23 +1,18 @@
 # frozen_string_literal: true
 
+require_relative 'light'
+
 module Wizrb
   module Lighting
     module Products
-      class RgbBulb
+      class TunableLight < Wizrb::Lighting::Products::Light
         FEATURES = {
           brightness: true,
           color_temp: true,
-          color: true,
+          color: false,
           effect: true,
           scenes: %i[
-            ocean
-            romance
-            sunset
-            party
-            fireplace
             cozy
-            forest
-            pastel_colors
             wake_up
             bedtime
             warm_white
@@ -26,25 +21,17 @@ module Wizrb
             night_light
             focus
             relax
-            true_colors
             tv_time
-            plantgrowth
-            spring
-            summer
-            fall
-            deepdive
-            jungle
-            mojito
-            club
-            christmas
-            halloween
             candlelight
             golden_white
             pulse
             steampunk
-            rhythm
           ]
         }.freeze
+
+        def initialize(ip:, port: 38_899)
+          super
+        end
       end
     end
   end

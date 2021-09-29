@@ -5,6 +5,9 @@ require 'socket'
 require 'timeout'
 require 'json'
 require_relative 'group'
+require_relative 'products/dimable_light'
+require_relative 'products/tunable_light'
+require_relative 'products/rgb_light'
 
 module Wizrb
   module Lighting
@@ -26,7 +29,7 @@ module Wizrb
         @wait = wait
         @listening = false
         @thread = nil
-        @bulbs = []
+        @lights = []
       end
 
       def all(filters: {})
@@ -36,7 +39,7 @@ module Wizrb
         sleep(@wait)
         close_registration
         close_socket
-        Wizrb::Lighting::Group.new(bulbs: @bulbs)
+        Wizrb::Lighting::Group.new(lights: @lights)
       end
 
       def home(id)
@@ -45,6 +48,18 @@ module Wizrb
 
       def room(id)
         all(filters: { 'roomId' => id })
+      end
+
+      def self.all(wait: 2, filters: {})
+        new(wait: wait).all(filters: filters)
+      end
+
+      def self.home(id, wait: 2)
+        new(wait: wait).home(id)
+      end
+
+      def self.room(id, wait: 2)
+        new(wait: wait).room(id)
       end
 
       private
@@ -67,8 +82,8 @@ module Wizrb
         @thread = Thread.new do
           while @listening
             data, addr = @socket.recvfrom(65_536)
-            bulb = parse_response(data, addr)
-            @bulbs << bulb if bulb && (filters.to_a - bulb.system_config.to_a).empty?
+            light = parse_response(data, addr)
+            @lights << light if light && (filters.to_a - light.system_config.to_a).empty?
           end
         end
       end
@@ -90,11 +105,21 @@ module Wizrb
       def parse_response(data, addr)
         response = JSON.parse(data)
 
-        if response.dig('result', 'success') && addr[1] && addr[2]
-          Wizrb::Lighting::Products::Bulb.new(ip: addr[2], port: addr[1])
-        end
+        resolve_light(ip: addr[2], port: addr[1]) if response.dig('result', 'success') && addr[1] && addr[2]
       rescue StandardError
         nil
+      end
+
+      def resolve_light(ip:, port: 38_899)
+        module_name = Wizrb::Lighting::Products::Light.new(ip: ip, port: port).module_name
+
+        if module_name.include?('TW')
+          Wizrb::Lighting::Products::TunableLight.new(ip: ip, port: port)
+        elsif module_name.include?('RGB')
+          Wizrb::Lighting::Products::RgbLight.new(ip: ip, port: port)
+        else
+          Wizrb::Lighting::Products::DimableLight.new(ip: ip, port: port)
+        end
       end
     end
   end

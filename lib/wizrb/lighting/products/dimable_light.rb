@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'light'
+
 module Wizrb
   module Lighting
     module Products
-      class DimableBulb
+      class DimableLight < Wizrb::Lighting::Products::Light
         FEATURES = {
           brightness: true,
           color_temp: false,
@@ -20,6 +22,10 @@ module Wizrb
             steampunk
           ]
         }.freeze
+
+        def initialize(ip:, port: 38_899)
+          super
+        end
       end
     end
   end

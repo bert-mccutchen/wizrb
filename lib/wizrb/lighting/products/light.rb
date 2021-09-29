@@ -14,7 +14,7 @@ require_relative '../events/reset_event'
 module Wizrb
   module Lighting
     module Products
-      class Bulb
+      class Light
         attr_reader :ip, :port, :state
 
         def initialize(ip:, port: 38_899)
@@ -38,8 +38,8 @@ module Wizrb
           @user_config ||= dispatch({ method: 'getUserConfig', params: {} })&.dig('result')
         end
 
-        def bulb_type
-          @bulb_type ||= system_config&.dig('moduleName')
+        def module_name
+          @module_name ||= system_config&.dig('moduleName')
         end
 
         def white_range

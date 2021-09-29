@@ -52,7 +52,7 @@ module Wizrb
           if sync || Random.rand > 0.5
             @group.dispatch_events(*events)
           else
-            @group.bulbs.sample.dispatch_events(*events)
+            @group.lights.sample.dispatch_events(*events)
           end
         end
       end

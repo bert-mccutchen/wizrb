@@ -48,13 +48,13 @@ module Wizrb
 
     def find_lights
       say('Finding lights... ')
-      group = Wizrb::Lighting::Discover.new(wait: 10).all
+      group = Wizrb::Lighting::Discover.all(wait: 10)
 
-      if group.bulbs.count == 0
+      if group.count == 0
         say('NONE FOUND', :red)
         return nil
       else
-        say("#{group.bulbs.count} FOUND", :green)
+        say("#{group.count} FOUND", :green)
       end
 
       group

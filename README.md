@@ -2,7 +2,7 @@
 
 ***Pronounced like "Wizard"***
 
-This is a hobby project for getting the most out of Philips WiZ devices. Currently this project only supports Philips WiZ light bulbs. If you would like to support this project, donations to buy new types of Philips WiZ accessories or coffee will be much appreciated!
+This is a hobby project for getting the most out of Philips WiZ devices. Currently this project only supports Philips WiZ lights. If you would like to support this project, donations to buy new types of Philips WiZ accessories or coffee will be much appreciated!
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M76DVZR)
 
@@ -13,30 +13,30 @@ Compatability may vary since I only own [Philips WiZ Bulb A19 E26 (Full color)](
 Testers with other (supported) Philips WiZ devices are welcome!
 
 #### Tested Devices:
-* [ ] Bulb A19 E26 (Dimmable)
-* [ ] Bulb A19 E26 (Tunable white)
-* [x] Bulb A19 E26 (Full color)
-* [ ] Bulb A21 E26 (Full color)
-* [ ] Candle B12 E12 (Full color)
-* [ ] Filament amber A19 E26 (Dimmable)
-* [ ] Filament amber G25 E26 (Dimmable)
-* [ ] Filament amber ST19 E26 (Dimmable)
-* [ ] Filament clear A19 E26 (Dimmable)
-* [ ] Filament clear G25 E26 (Dimmable)
-* [ ] Filament clear ST19 E26 (Dimmable)
-* [ ] Reflector BR30 E26 (Dimmable)
-* [ ] Reflector BR30 E26 (Tunable white)
-* [ ] Reflector BR30 E26 (Full color)
-* [ ] Spot PAR38 E26 (Tunable white)
-* [ ] Spot PAR16 GU10 (Full color)
-* [ ] LED Strip Starter kit 2m (Full color)
-* [ ] LED Strip Extension 1m (Full color)
-* [ ] Recessed downlight 6" E26 (Tunable white)
-* [ ] Recessed downlight 6" E26 (Full color)
-* [ ] Portable (Full color)
+* [ ] [Bulb A19 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556013/)
+* [ ] [Bulb A19 E26 (Tunable white)](https://www.wizconnected.com/en-CA/consumer/products/046677556105/)
+* [x] [Bulb A19 E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556136/)
+* [ ] [Bulb A21 E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677603144/)
+* [ ] [Candle B12 E12 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677603182/)
+* [ ] [Filament amber A19 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556051/)
+* [ ] [Filament amber G25 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556075/)
+* [ ] [Filament amber ST19 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556099/)
+* [ ] [Filament clear A19 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556044/)
+* [ ] [Filament clear G25 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556068/)
+* [ ] [Filament clear ST19 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556082/)
+* [ ] [Reflector BR30 E26 (Dimmable)](https://www.wizconnected.com/en-CA/consumer/products/046677556037/)
+* [ ] [Reflector BR30 E26 (Tunable white)](https://www.wizconnected.com/en-CA/consumer/products/046677556112/)
+* [ ] [Reflector BR30 E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556143/)
+* [ ] [Spot PAR38 E26 (Tunable white)](https://www.wizconnected.com/en-CA/consumer/products/046677603199/)
+* [ ] [Spot PAR16 GU10 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677603243/)
+* [ ] [LED Strip Starter kit 2m (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677560805/)
+* [ ] [LED Strip Extension 1m (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677561680/)
+* [ ] [Recessed downlight 6" E26 (Tunable white)](https://www.wizconnected.com/en-CA/consumer/products/046677556129/)
+* [ ] [Recessed downlight 6" E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556150/)
+* [ ] [Portable (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677604080/)
 
 #### Unsupported Devices:
-* [x] Smart Plug (Type B)
+* [x] [Smart Plug (Type B)](https://www.wizconnected.com/en-CA/consumer/products/046677603090/)
 
 ## Installation
 
@@ -59,24 +59,24 @@ Or install it yourself as:
 ### Connecting to Individual Lights
 ```ruby
 # Connect to light @ 127.0.0.1
-bulb = Wizrb::Lighting::Products::Bulb.new(ip: '127.0.0.1')
+light = Wizrb::Lighting::Products::Light.new(ip: '127.0.0.1')
 
 # Connect to light @ 127.0.0.1:38899
-bulb = Wizrb::Lighting::Products::Bulb.new(ip: '127.0.0.1', port: 38899)
+light = Wizrb::Lighting::Products::Light.new(ip: '127.0.0.1', port: 38899)
 ```
 
 ### Finding Lights
 ```ruby
 # Finding all lights:
-group = Wizrb::Lighting::Discover.new.all
+group = Wizrb::Lighting::Discover.all
 # => Wizrb::Lighting::Group
 
 # Finding all lights in home by ID:
-group = Wizrb::Lighting::Discover.new.home(1234)
+group = Wizrb::Lighting::Discover.home(1234)
 # => Wizrb::Lighting::Group
 
 # Finding all lights in room by ID:
-group = Wizrb::Lighting::Discover.new.room(1234)
+group = Wizrb::Lighting::Discover.room(1234)
 # => Wizrb::Lighting::Group
 ```
 
@@ -84,42 +84,42 @@ group = Wizrb::Lighting::Discover.new.room(1234)
 
 #### Simple On/Off/Switch
 ```ruby
-bulb = Wizrb::Lighting::Products::Bulb.new(ip: '127.0.0.1')
+light = Wizrb::Lighting::Products::Light.new(ip: '127.0.0.1')
 
-bulb.power_on
-bulb.power_off
-bulb.power_switch
+light.power_on
+light.power_off
+light.power_switch
 ```
 
-#### Fetching Bulb State
+#### Fetching Light State
 ```ruby
-bulb = Wizrb::Lighting::Products::Bulb.new(ip: '127.0.0.1')
+light = Wizrb::Lighting::Products::Light.new(ip: '127.0.0.1')
 
-bulb.state
+light.state
 # => Wizrb::Lighting::State
 
-bulb.state.power
+light.state.power
 # => true
 
-bulb.state.cold_white
+light.state.cold_white
 # => 255
 
-bulb.state.color_temp
+light.state.color_temp
 # => 3200
 
-bulb.state.brightness
+light.state.brightness
 # => 255
 
-bulb.state.rgb
+light.state.rgb
 # => { red: 255, green: 255, blue: 255 }
 
-bulb.state.scene
+light.state.scene
 # => :party
 
-bulb.state.speed
+light.state.speed
 # => 200
 
-bulb.state.warm_white
+light.state.warm_white
 # => 255
 ```
 
@@ -131,7 +131,7 @@ group.dispatch_event(event)
 
 # Turn off the first light.
 event = Wizrb::Lighting::Events::PowerEvent.new(false)
-group.bulbs.first.dispatch_event(event)
+group.first.dispatch_event(event)
 ```
 
 #### Dispatching Multiple Lighting Events
@@ -146,7 +146,7 @@ group.dispatch_events(
 )
 
 # Tell the last light to relax.
-group.bulbs.last.dispatch_events(
+group.last.dispatch_events(
   Wizrb::Lighting::Events::SetSceneEvent.new(:relax),
   Wizrb::Lighting::Events::SetSpeedEvent.new(10)
 )
@@ -237,7 +237,7 @@ end
 
 #### Using Custom Scenes
 ```ruby
-group = Wizrb::Lighting::Discover.new.all
+group = Wizrb::Lighting::Discover.all
 scene = BurglarScene.new(group)
 
 # Start the scene.

@@ -1,14 +1,20 @@
 # frozen_string_literal: true
 
-require_relative 'products/bulb'
+require_relative 'products/light'
 
 module Wizrb
   module Lighting
     class Group
-      attr_reader :bulbs
+      include Enumerable
 
-      def initialize(bulbs:)
-        @bulbs = bulbs
+      attr_reader :lights
+
+      def initialize(lights:)
+        @lights = lights
+      end
+
+      def each(&block)
+        @lights.each(&block)
       end
 
       def power_on
@@ -49,8 +55,8 @@ module Wizrb
       private
 
       def dispatch_event_each(event)
-        @bulbs.each do |bulb|
-          bulb.dispatch_event(event)
+        @lights.each do |light|
+          light.dispatch_event(event)
         end
       end
     end
