@@ -29,7 +29,7 @@ Testers with other (supported) Philips WiZ devices are welcome!
 * [ ] [Reflector BR30 E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556143/)
 * [ ] [Spot PAR38 E26 (Tunable white)](https://www.wizconnected.com/en-CA/consumer/products/046677603199/)
 * [ ] [Spot PAR16 GU10 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677603243/)
-* [ ] [LED Strip Starter kit 2m (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677560805/)
+* [x] [LED Strip Starter kit 2m (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677560805/)
 * [ ] [LED Strip Extension 1m (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677561680/)
 * [ ] [Recessed downlight 6" E26 (Tunable white)](https://www.wizconnected.com/en-CA/consumer/products/046677556129/)
 * [ ] [Recessed downlight 6" E26 (Full color)](https://www.wizconnected.com/en-CA/consumer/products/046677556150/)
