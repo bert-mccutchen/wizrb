@@ -6,6 +6,9 @@ module Wizrb
   module Lighting
     module Events
       class SetSpeedEvent < Wizrb::Lighting::Events::Event
+        MIN_VALUE = 10
+        MAX_VALUE = 200
+
         def initialize(value)
           validate!(value)
           super(method: 'setState', params: { speed: value })
@@ -14,7 +17,9 @@ module Wizrb
         private
 
         def validate!(value)
-          raise ArgumentError, 'Speed must be between 10 and 200' if !value || value < 10 || value > 200
+          return if value && value >= MIN_VALUE && value <= MAX_VALUE
+
+          raise ArgumentError, "Speed must be between #{MIN_VALUE} and #{MAX_VALUE}"
         end
       end
     end
