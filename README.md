@@ -108,7 +108,7 @@ light.state.color_temp
 # => 3200
 
 light.state.brightness
-# => 255
+# => 100
 
 light.state.rgb
 # => { red: 255, green: 255, blue: 255 }
@@ -166,8 +166,8 @@ Wizrb::Lighting::Events::RefreshEvent.new
 # No arguments
 Wizrb::Lighting::Events::ResetEvent.new
 
-# Integer 10 - 255
-Wizrb::Lighting::Events::SetBrightnessEvent.new(255)
+# Integer 10 - 100
+Wizrb::Lighting::Events::SetBrightnessEvent.new(100)
 
 # Integer 1 - 255
 Wizrb::Lighting::Events::SetColdWhiteEvent.new(255)

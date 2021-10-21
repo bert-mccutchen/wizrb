@@ -6,6 +6,9 @@ module Wizrb
   module Lighting
     module Events
       class SetRgbEvent < Wizrb::Lighting::Events::Event
+        MIN_VALUE = 1
+        MAX_VALUE = 255
+
         def initialize(red, green, blue)
           validate_color!('Red', red)
           validate_color!('Green', green)
@@ -16,7 +19,9 @@ module Wizrb
         private
 
         def validate_color!(color, value)
-          raise ArgumentError, "#{color} must be between 0 and 255" if !value || value < 0 || value > 255
+          return if value && value >= MIN_VALUE && value <= MAX_VALUE
+
+          raise ArgumentError, "#{color} must be between #{MIN_VALUE} and #{MAX_VALUE}"
         end
       end
     end

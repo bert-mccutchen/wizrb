@@ -6,6 +6,9 @@ module Wizrb
   module Lighting
     module Events
       class SetWarmWhiteEvent < Wizrb::Lighting::Events::Event
+        MIN_VALUE = 1
+        MAX_VALUE = 255
+
         def initialize(value)
           validate!(value)
           super(method: 'setState', params: { w: value })
@@ -14,7 +17,9 @@ module Wizrb
         private
 
         def validate!(value)
-          raise ArgumentError, 'Warm white must be between 1 and 255' if !value || value < 1 || value > 255
+          return if value && value >= MIN_VALUE && value <= MAX_VALUE
+
+          raise ArgumentError, "Warm white must be between #{MIN_VALUE} and #{MAX_VALUE}"
         end
       end
     end

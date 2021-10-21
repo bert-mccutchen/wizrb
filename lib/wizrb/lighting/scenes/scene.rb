@@ -22,6 +22,7 @@ module Wizrb
             before_start
             step while @running
             after_stop
+          ensure
             restore_state if @save
           end
         end

@@ -6,15 +6,20 @@ module Wizrb
   module Lighting
     module Events
       class SetBrightnessEvent < Wizrb::Lighting::Events::Event
+        MIN_VALUE = 10
+        MAX_VALUE = 100
+
         def initialize(value)
           validate!(value)
-          super(method: 'setState', params: { dimming: ((value / 255.0) * 100).round })
+          super(method: 'setState', params: { dimming: value.to_i })
         end
 
         private
 
         def validate!(value)
-          raise ArgumentError, 'Brightness must be between 10 and 255' if !value || value < 10 || value > 255
+          return if value && value >= MIN_VALUE && value <= MAX_VALUE
+
+          raise ArgumentError, "Brightness must be an integer between #{MIN_VALUE} and #{MAX_VALUE}"
         end
       end
     end
