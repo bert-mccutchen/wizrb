@@ -36,7 +36,7 @@ module Wizrb
 
           Timeout.timeout(timeout, Wizrb::ConnectionTimeoutError) do
             data, _addr = @socket.recvfrom(max)
-            log("Recieved: #{data}")
+            log("Received: #{data}")
             parse_response(data)
           end
         end

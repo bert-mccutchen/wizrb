@@ -24,6 +24,10 @@ Style/Documentation:
 Style/NumericPredicate:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
 Metrics/CyclomaticComplexity:
   Enabled: false
 
