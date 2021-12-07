@@ -40,11 +40,7 @@ module Wizrb
       end
 
       def brightness
-        if @state[:dimming] < 10
-          @state[:dimming].to_i * 10
-        else
-          @state[:dimming]
-        end
+        @state[:dimming]
       end
 
       def speed
