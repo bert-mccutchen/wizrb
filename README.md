@@ -91,6 +91,32 @@ light.power_off
 light.power_switch
 ```
 
+### Other Convenience Methods
+```ruby
+light = Wizrb::Lighting::Products::Light.new(ip: '127.0.0.1')
+
+# Integer 10 - 100
+light.brightness(100)
+
+# Integer 1 - 255
+light.cold_white(255)
+
+# Integer 1000 - 10000 in increments of 100
+light.color_temp(3200)
+
+# Integers 0 - 255
+light.rgb(255, 255, 255)
+
+# Any key in Wizrb::Lighting::SCENES
+light.scene(:party)
+
+# Integer 10 - 200
+light.speed(200)
+
+# Integer 1 - 255
+light.warm_white(255)
+```
+
 #### Fetching Light State
 ```ruby
 light = Wizrb::Lighting::Products::Light.new(ip: '127.0.0.1')
