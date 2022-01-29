@@ -7,14 +7,14 @@ RSpec.describe Wizrb::Shared::Events::Base do
     context 'with only the method' do
       let(:event) { described_class.new(method: 'test') }
 
-      it { is_expected.to eq('{"method":"test","params":{}}')}
+      it { is_expected.to eq('{"method":"test","params":{}}') }
     end
 
     context 'with method and params' do
       let(:params) { { a: 'foo', b: { c: 'bar' } } }
       let(:event) { described_class.new(method: 'test', params: params) }
 
-      it { is_expected.to eq('{"method":"test","params":{"a":"foo","b":{"c":"bar"}}}')}
+      it { is_expected.to eq('{"method":"test","params":{"a":"foo","b":{"c":"bar"}}}') }
     end
   end
 end

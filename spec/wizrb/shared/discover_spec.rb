@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Wizrb::Shared::Discover do
-  xdescribe '#all' do; end
+  # rubocop:disable RSpec/EmptyExampleGroup
+  xdescribe '#all' do
+    # TODO
+  end
+  # rubocop:enable RSpec/EmptyExampleGroup
 
   describe '#home' do
     let(:discoverer) { described_class.new }
