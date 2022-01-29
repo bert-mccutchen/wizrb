@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'event'
+require_relative 'base'
 
 module Wizrb
-  module Lighting
+  module Shared
     module Events
-      class PowerEvent < Wizrb::Lighting::Events::Event
+      class PowerEvent < Wizrb::Shared::Events::Base
         def initialize(value)
           validate!(value)
           super(method: 'setPilot', params: { state: value })

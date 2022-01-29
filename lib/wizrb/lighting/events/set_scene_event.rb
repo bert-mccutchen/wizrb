@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'event'
+require_relative '../../shared/events/base'
 
 module Wizrb
   module Lighting
     module Events
-      class SetSceneEvent < Wizrb::Lighting::Events::Event
+      class SetSceneEvent < Wizrb::Shared::Events::Base
         def initialize(value)
           validate!(value)
           super(method: 'setState', params: { sceneId: Wizrb::Lighting::SCENES[value] })

@@ -5,8 +5,10 @@ require 'socket'
 require 'timeout'
 
 module Wizrb
-  module Lighting
+  module Shared
     class Connection
+      attr_reader :ip, :port, :connection_id, :socket
+
       def initialize(ip, port)
         @ip = ip
         @port = port
@@ -17,7 +19,7 @@ module Wizrb
 
       def connect
         with_error_logging do
-          @socket.connect(@ip, @port)
+          socket.connect(ip, port)
           log('Connected')
         end
       end
@@ -26,7 +28,7 @@ module Wizrb
         with_error_logging do
           connect
           log("Sending: #{data.to_json}")
-          @socket.send(data.to_json.encode('UTF-8'), 0)
+          socket.send(data.to_json.encode('UTF-8'), 0)
         end
       end
 
@@ -35,8 +37,8 @@ module Wizrb
           connect
 
           Timeout.timeout(timeout, Wizrb::ConnectionTimeoutError) do
-            data, _addr = @socket.recvfrom(max)
-            log("Recieved: #{data}")
+            data, _addr = socket.recvfrom(max)
+            log("Received: #{data}")
             parse_response(data)
           end
         end
@@ -60,7 +62,7 @@ module Wizrb
       end
 
       def log(message)
-        puts "[Wizrb::Connection##{@connection_id} #{@ip}:#{@port}] #{message}" if ENV['DEBUG']
+        puts "[Wizrb::Connection##{connection_id} #{ip}:#{port}] #{message}" if ENV['DEBUG']
       end
 
       def with_error_logging

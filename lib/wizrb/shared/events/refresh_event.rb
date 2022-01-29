@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'event'
+require_relative 'base'
 
 module Wizrb
-  module Lighting
+  module Shared
     module Events
-      class RefreshEvent < Wizrb::Lighting::Events::Event
+      class RefreshEvent < Wizrb::Shared::Events::Base
         def initialize
           super(method: 'getPilot')
         end
