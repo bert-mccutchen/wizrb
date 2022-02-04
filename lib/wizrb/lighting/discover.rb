@@ -15,21 +15,23 @@ module Wizrb
         response = JSON.parse(data)
         return unless response.dig('result', 'success') && addr[1] && addr[2]
 
-        resolve_light(ip: addr[2], port: addr[1])
+        resolve_device(ip: addr[2], port: addr[1])
       rescue StandardError
         nil
       end
 
-      def resolve_light(ip:, port: 38_899)
-        module_name = Wizrb::Lighting::Products::Light.new(ip: ip, port: port).module_name
+      def resolve_device(ip:, port: 38_899)
+        module_name = Wizrb::Shared::Products::Device.new(ip: ip, port: port).module_name
 
-        if module_name.include?('TW')
-          Wizrb::Lighting::Products::TunableLight.new(ip: ip, port: port)
-        elsif module_name.include?('RGB')
+        if module_name.include?(Wizrb::Lighting::Products::RgbLight::MODULE_NAME_IDENTIFIER)
           Wizrb::Lighting::Products::RgbLight.new(ip: ip, port: port)
-        else
+        elsif module_name.include?(Wizrb::Lighting::Products::TunableLight::MODULE_NAME_IDENTIFIER)
+          Wizrb::Lighting::Products::TunableLight.new(ip: ip, port: port)
+        elsif module_name.include?(Wizrb::Lighting::Products::DimableLight::MODULE_NAME_IDENTIFIER)
           Wizrb::Lighting::Products::DimableLight.new(ip: ip, port: port)
         end
+
+        nil
       end
 
       def group_devices

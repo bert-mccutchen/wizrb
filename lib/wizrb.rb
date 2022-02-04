@@ -9,6 +9,8 @@ require_relative 'wizrb/lighting'
 require_relative 'wizrb/lighting/discover'
 require_relative 'wizrb/lighting/group'
 require_relative 'wizrb/lighting/state'
+require_relative 'wizrb/power/discover'
+require_relative 'wizrb/power/group'
 
 Dir["#{File.dirname(__FILE__)}/wizrb/shared/products/*.rb"].sort.each { |file| require file }
 Dir["#{File.dirname(__FILE__)}/wizrb/shared/events/*.rb"].sort.each { |file| require file }

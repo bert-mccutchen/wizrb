@@ -6,6 +6,7 @@ module Wizrb
   module Lighting
     module Products
       class RgbLight < Wizrb::Lighting::Products::Light
+        MODULE_NAME_IDENTIFIER = 'RGB'
         FEATURES = {
           brightness: true,
           color_temp: true,

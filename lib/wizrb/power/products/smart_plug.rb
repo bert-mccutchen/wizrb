@@ -3,9 +3,11 @@
 require_relative '../../shared/products/device'
 
 module Wizrb
-  module Lighting
+  module Power
     module Products
       class SmartPlug < Wizrb::Shared::Products::Device
+        MODULE_NAME_IDENTIFIER = 'SOCKET'
+
         def initialize(ip:, port: 38_899)
           super
         end
