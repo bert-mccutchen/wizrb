@@ -30,8 +30,6 @@ module Wizrb
         elsif module_name.include?(Wizrb::Lighting::Products::DimableLight::MODULE_NAME_IDENTIFIER)
           Wizrb::Lighting::Products::DimableLight.new(ip: ip, port: port)
         end
-
-        nil
       end
 
       def group_devices

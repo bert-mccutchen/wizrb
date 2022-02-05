@@ -21,11 +21,9 @@ module Wizrb
       def resolve_device(ip:, port: 38_899)
         module_name = Wizrb::Shared::Products::Device.new(ip: ip, port: port).module_name
 
-        if module_name.include?(Wizrb::Power::Products::SmartPlug::MODULE_NAME_IDENTIFIER)
-          Wizrb::Power::Products::SmartPlug.new(ip: ip, port: port)
-        end
+        return unless module_name.include?(Wizrb::Power::Products::SmartPlug::MODULE_NAME_IDENTIFIER)
 
-        nil
+        Wizrb::Power::Products::SmartPlug.new(ip: ip, port: port)
       end
 
       def group_devices
