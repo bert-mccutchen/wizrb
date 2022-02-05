@@ -1,0 +1,1 @@
+{"method":"getSystemConfig","env":"pro","result":{"mac":"a1b2c3d4e5f6","homeId":1234,"roomId":5678,"rgn":"eu","moduleName":"ESP01_SHRGB1C_31","fwVersion":"1.25.0","groupId":0,"drvConf":[33,1],"ping":0}}

@@ -52,14 +52,14 @@ module Wizrb
         end
 
         def save_state
-          @state_events = @group.map do |light|
-            Wizrb::Lighting::Events::Event.new(method: 'setState', params: light.refresh.state)
+          @state_events = @group.map do |device|
+            Wizrb::Shared::Events::Base.new(method: 'setState', params: device.refresh.state)
           end
         end
 
         def restore_state
-          @group.each_with_index do |light, i|
-            light.dispatch_event(@state_events[i])
+          @group.each_with_index do |device, i|
+            device.dispatch_event(@state_events[i])
           end
         end
       end

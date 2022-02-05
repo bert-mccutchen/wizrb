@@ -2,25 +2,15 @@
 
 module Wizrb
   module Lighting
-    class State
+    class State < Wizrb::Shared::State
       STATE_KEYS = %i[state w c r g b temp dimming speed sceneId].freeze
-
-      def initialize
-        @state = {
-          state: false
-        }
-      end
 
       def parse!(response)
         result = response&.dig('result')
         return unless result
 
         @state = result.transform_keys(&:to_sym).slice(*STATE_KEYS)
-        @state.delete(:sceneId) if @state[:sceneId].zero?
-      end
-
-      def power
-        @state[:state]
+        @state.delete(:sceneId) if @state[:sceneId]&.zero?
       end
 
       def warm_white
@@ -40,11 +30,7 @@ module Wizrb
       end
 
       def brightness
-        if @state[:dimming] <= 10
-          @state[:dimming].to_i * 10
-        else
-          @state[:dimming]
-        end
+        @state[:dimming]
       end
 
       def speed
@@ -53,14 +39,6 @@ module Wizrb
 
       def scene
         Wizrb::Lighting::SCENES.key(@state[:schdPsetId] || @state[:sceneId])
-      end
-
-      def to_s
-        @state.to_s
-      end
-
-      def to_json(*_args)
-        @state.to_json
       end
     end
   end

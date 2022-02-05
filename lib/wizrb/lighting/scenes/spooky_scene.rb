@@ -7,14 +7,14 @@ module Wizrb
     module Scenes
       class SpookyScene < Wizrb::Lighting::Scenes::Scene
         DEFAULT_STATE_EVENTS = [
-          Wizrb::Lighting::Events::PowerEvent.new(true),
+          Wizrb::Shared::Events::PowerEvent.new(true),
           Wizrb::Lighting::Events::SetSpeedEvent.new(200),
           Wizrb::Lighting::Events::SetColorTempEvent.new(1000),
           Wizrb::Lighting::Events::SetBrightnessEvent.new(100)
         ].freeze
 
         BLACKOUT_EVENTS = [
-          Wizrb::Lighting::Events::PowerEvent.new(false)
+          Wizrb::Shared::Events::PowerEvent.new(false)
         ].freeze
 
         def initialize(group, sync: false)
@@ -52,7 +52,7 @@ module Wizrb
           if sync || Random.rand > 0.5
             @group.dispatch_events(*events)
           else
-            @group.lights.sample.dispatch_events(*events)
+            @group.devices.sample.dispatch_events(*events)
           end
         end
       end

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require_relative 'event'
+require_relative '../../shared/events/base'
 
 module Wizrb
   module Lighting
     module Events
-      class SetWarmWhiteEvent < Wizrb::Lighting::Events::Event
+      class SetWarmWhiteEvent < Wizrb::Shared::Events::Base
         MIN_VALUE = 1
         MAX_VALUE = 255
 

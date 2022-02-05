@@ -3,9 +3,9 @@
 require 'json'
 
 module Wizrb
-  module Lighting
+  module Shared
     module Events
-      class Event
+      class Base
         attr_reader :params
 
         def initialize(method:, params: {})

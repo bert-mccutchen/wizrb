@@ -1,0 +1,1 @@
+{"method":"getModelConfig","env":"pro","result":{"ps":2,"pwmFreq":1000,"pwmRange":[0,100],"wcr":33,"nowc":1,"cctRange":[2200,2699,6500,6500],"renderFactor":[255,250,150,255,0,0,40,0,0,0]}}
