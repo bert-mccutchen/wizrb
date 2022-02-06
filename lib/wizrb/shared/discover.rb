@@ -2,7 +2,6 @@
 
 require 'ipaddr'
 require 'socket'
-require 'timeout'
 require 'json'
 require_relative 'group'
 require_relative 'products/device'

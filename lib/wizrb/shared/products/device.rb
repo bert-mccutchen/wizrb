@@ -2,7 +2,6 @@
 
 require 'json'
 require 'socket'
-require 'timeout'
 require_relative '../connection'
 require_relative '../state'
 require_relative '../events/base'
@@ -98,7 +97,7 @@ module Wizrb
 
         def dispatch(data)
           @connection.send(data)
-          @connection.recieve(timeout: 10, max: 65_536)
+          @connection.receive(timeout: 5, max: 65_536)
         end
       end
     end

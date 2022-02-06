@@ -10,7 +10,7 @@ RSpec.describe Wizrb::Shared::Connection do
     # TODO
   end
 
-  xdescribe '#recieve' do
+  xdescribe '#receive' do
     # TODO
   end
 
