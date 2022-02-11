@@ -2,7 +2,6 @@
 
 require 'json'
 require 'socket'
-require 'timeout'
 
 module Wizrb
   module Shared
@@ -32,22 +31,23 @@ module Wizrb
         end
       end
 
-      def recieve(timeout: 2, max: 1024)
+      def receive(timeout: 2, max: 1024)
         with_error_logging do
           connect
 
-          Timeout.timeout(timeout, Wizrb::ConnectionTimeoutError) do
-            data, _addr = socket.recvfrom(max)
-            log("Received: #{data}")
-            parse_response(data)
-          end
+          ready = socket.wait_readable(timeout)
+          raise Wizrb::ConnectionTimeoutError unless ready
+
+          data, _addr = socket.recvfrom(max)
+          log("Received: #{data}")
+          parse_response(data)
         end
       end
 
       def test
         with_error_logging do
           send({ method: 'getPilot', params: {} })
-          recieve
+          receive
         end
       end
 

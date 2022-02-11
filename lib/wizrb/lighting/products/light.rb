@@ -2,7 +2,6 @@
 
 require 'json'
 require 'socket'
-require 'timeout'
 require_relative '../../shared/products/device'
 require_relative '../state'
 
