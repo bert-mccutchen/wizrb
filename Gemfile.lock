@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wizrb (1.1.1)
+    wizrb (1.1.2)
       thor (~> 1.1)
 
 GEM
