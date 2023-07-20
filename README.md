@@ -21,20 +21,15 @@ Testers with other (supported) Philips WiZ devices are welcome!
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'wizrb'
+Install via Bundler:
+```bash
+bundle add wizrb
 ```
 
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install wizrb
-
+Or install it manually:
+```bash
+gem install wizrb
+```
 ## Usage
 
 Most of the documentation on how to use this gem is located within [Wizrb Devices](doc/devices.md).
