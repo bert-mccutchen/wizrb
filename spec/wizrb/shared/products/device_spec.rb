@@ -138,7 +138,7 @@ RSpec.describe Wizrb::Shared::Products::Device do
     end
 
     it 'updates the power state' do
-      expect(device.state.power).to eq(true)
+      expect(device.state.power).to be(true)
     end
   end
 
@@ -164,23 +164,23 @@ RSpec.describe Wizrb::Shared::Products::Device do
   end
 
   describe '#dispatch_events' do
-    let(:new_event1) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 1 }) }
-    let(:new_event2) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 0, b: 1 }) }
+    let(:new_foo_event) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 1 }) }
+    let(:new_bar_event) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 0, b: 1 }) }
 
     before { allow(device).to receive(:dispatch) }
 
     context 'with valid event' do
       it 'dispatches the event' do
-        device.dispatch_events(new_event1, new_event2)
+        device.dispatch_events(new_foo_event, new_bar_event)
         expect(device).to have_received(:dispatch).with(an_instance_of(Wizrb::Shared::Events::Base)).once
       end
     end
 
     context 'with invalid event' do
-      let(:new_event2) { Object.new }
+      let(:new_bar_event) { Object.new }
 
       it 'raises an error' do
-        expect { device.dispatch_events(new_event1, new_event2) }.to raise_error(ArgumentError)
+        expect { device.dispatch_events(new_foo_event, new_bar_event) }.to raise_error(ArgumentError)
       end
     end
   end

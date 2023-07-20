@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/bert-mccutchen/wizrb'
   spec.metadata['changelog_uri'] = 'https://github.com/bert-mccutchen/wizrb/blob/master/CHANGELOG.md'
+  spec.metadata['rubygems_mfa_required'] = 'true'
 
   # Specify which files should be added to the gem when it is released.
   spec.files         = Dir['CHANGELOG.md', 'LICENSE.txt', 'README.md', 'doc/*', 'exe/*', 'lib/**/*']
@@ -26,7 +27,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency 'example-gem', '~> 1.0'
-  spec.add_dependency 'thor', '~> 1.1'
+  spec.add_dependency 'thor', '~> 1.2.2'
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html

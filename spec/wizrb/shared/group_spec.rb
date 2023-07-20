@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
 RSpec.describe Wizrb::Shared::Group do
-  let(:device1) { instance_spy(Wizrb::Shared::Products::Device) }
-  let(:device2) { instance_spy(Wizrb::Shared::Products::Device) }
-  let(:group) { described_class.new(devices: [device1, device2]) }
+  let(:foo_device) { instance_spy(Wizrb::Shared::Products::Device) }
+  let(:bar_device) { instance_spy(Wizrb::Shared::Products::Device) }
+  let(:group) { described_class.new(devices: [foo_device, bar_device]) }
 
   describe '#power_on' do
     let(:power_event) { Wizrb::Shared::Events::PowerEvent }
 
     before { group.power_on }
 
-    it 'dispatches the event to device1' do
-      expect(device1).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
+    it 'dispatches the event to foo_device' do
+      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
     end
 
-    it 'dispatches the event to device2' do
-      expect(device2).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
+    it 'dispatches the event to bar_device' do
+      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
     end
   end
 
@@ -24,12 +24,12 @@ RSpec.describe Wizrb::Shared::Group do
 
     before { group.power_off }
 
-    it 'dispatches the event to device1' do
-      expect(device1).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
+    it 'dispatches the event to foo_device' do
+      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
     end
 
-    it 'dispatches the event to device2' do
-      expect(device2).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
+    it 'dispatches the event to bar_device' do
+      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
     end
   end
 
@@ -38,12 +38,12 @@ RSpec.describe Wizrb::Shared::Group do
 
     before { group.reboot }
 
-    it 'dispatches the event to device1' do
-      expect(device1).to have_received(:dispatch_event).with(an_instance_of(reboot_event)).once
+    it 'dispatches the event to foo_device' do
+      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(reboot_event)).once
     end
 
-    it 'dispatches the event to device2' do
-      expect(device2).to have_received(:dispatch_event).with(an_instance_of(reboot_event)).once
+    it 'dispatches the event to bar_device' do
+      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(reboot_event)).once
     end
   end
 
@@ -52,12 +52,12 @@ RSpec.describe Wizrb::Shared::Group do
 
     before { group.reset }
 
-    it 'dispatches the event to device1' do
-      expect(device1).to have_received(:dispatch_event).with(an_instance_of(reset_event)).once
+    it 'dispatches the event to foo_device' do
+      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(reset_event)).once
     end
 
-    it 'dispatches the event to device2' do
-      expect(device2).to have_received(:dispatch_event).with(an_instance_of(reset_event)).once
+    it 'dispatches the event to bar_device' do
+      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(reset_event)).once
     end
   end
 
@@ -67,12 +67,12 @@ RSpec.describe Wizrb::Shared::Group do
     describe 'with valid event' do
       before { group.dispatch_event(new_event) }
 
-      it 'dispatches the event to device1' do
-        expect(device1).to have_received(:dispatch_event).with(new_event).once
+      it 'dispatches the event to foo_device' do
+        expect(foo_device).to have_received(:dispatch_event).with(new_event).once
       end
 
-      it 'dispatches the event to device2' do
-        expect(device2).to have_received(:dispatch_event).with(new_event).once
+      it 'dispatches the event to bar_device' do
+        expect(bar_device).to have_received(:dispatch_event).with(new_event).once
       end
     end
 
@@ -86,26 +86,26 @@ RSpec.describe Wizrb::Shared::Group do
   end
 
   describe '#dispatch_events' do
-    let(:new_event1) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 1 }) }
-    let(:new_event2) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 0, b: 1 }) }
+    let(:new_foo_event) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 1 }) }
+    let(:new_bar_event) { Wizrb::Shared::Events::Base.new(method: 'setState', params: { a: 0, b: 1 }) }
 
     context 'with valid events' do
-      before { group.dispatch_events(new_event1, new_event2) }
+      before { group.dispatch_events(new_foo_event, new_bar_event) }
 
-      it 'dispatches the event to device1' do
-        expect(device1).to have_received(:dispatch_event).with(an_instance_of(Wizrb::Shared::Events::Base)).once
+      it 'dispatches the event to foo_device' do
+        expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(Wizrb::Shared::Events::Base)).once
       end
 
-      it 'dispatches the event to device2' do
-        expect(device2).to have_received(:dispatch_event).with(an_instance_of(Wizrb::Shared::Events::Base)).once
+      it 'dispatches the event to bar_device' do
+        expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(Wizrb::Shared::Events::Base)).once
       end
     end
 
     context 'with invalid events' do
-      let(:new_event2) { Object.new }
+      let(:new_bar_event) { Object.new }
 
       it 'raises an error' do
-        expect { group.dispatch_events(new_event1, new_event2) }.to raise_error(ArgumentError)
+        expect { group.dispatch_events(new_foo_event, new_bar_event) }.to raise_error(ArgumentError)
       end
     end
   end
