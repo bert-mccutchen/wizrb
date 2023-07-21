@@ -7,6 +7,10 @@ RSpec.describe Wizrb::Lighting::Events::SetSceneEvent do
     context "with #{scene} scene" do
       let(:value) { scene }
 
+      it 'is an instance of Wizrb::Shared::Events::Base' do
+        expect(event).to be_a(Wizrb::Shared::Events::Base)
+      end
+
       it 'does not raise an error' do
         expect { event }.not_to raise_error
       end

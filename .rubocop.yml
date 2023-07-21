@@ -4,7 +4,7 @@ require:
   - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.7
   NewCops: enable
 
 Style/StringLiterals:
@@ -22,10 +22,4 @@ Style/Documentation:
   Enabled: false
 
 Style/NumericPredicate:
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Enabled: false
-
-Metrics/PerceivedComplexity:
   Enabled: false

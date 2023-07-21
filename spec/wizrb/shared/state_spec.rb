@@ -11,7 +11,7 @@ RSpec.describe Wizrb::Shared::State do
     describe '#power' do
       subject { state.power }
 
-      it { is_expected.to eq(false) }
+      it { is_expected.to be(false) }
     end
 
     describe '#to_s' do
@@ -33,7 +33,7 @@ RSpec.describe Wizrb::Shared::State do
     describe '#power' do
       subject { state.power }
 
-      it { is_expected.to eq(true) }
+      it { is_expected.to be(true) }
     end
 
     describe '#to_s' do

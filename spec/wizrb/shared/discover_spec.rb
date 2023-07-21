@@ -2,7 +2,7 @@
 
 RSpec.describe Wizrb::Shared::Discover do
   # rubocop:disable RSpec/EmptyExampleGroup
-  xdescribe '#all' do
+  describe '#all', pending: 'TODO' do
     # TODO
   end
   # rubocop:enable RSpec/EmptyExampleGroup
