@@ -6,59 +6,19 @@ RSpec.describe Wizrb::Shared::Group do
   let(:group) { described_class.new(devices: [foo_device, bar_device]) }
 
   describe '#power_on' do
-    let(:power_event) { Wizrb::Shared::Events::PowerEvent }
-
-    before { group.power_on }
-
-    it 'dispatches the event to foo_device' do
-      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
-    end
-
-    it 'dispatches the event to bar_device' do
-      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
-    end
+    it_behaves_like 'a group event', Wizrb::Shared::Events::PowerEvent, :power_on
   end
 
   describe '#power_off' do
-    let(:power_event) { Wizrb::Shared::Events::PowerEvent }
-
-    before { group.power_off }
-
-    it 'dispatches the event to foo_device' do
-      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
-    end
-
-    it 'dispatches the event to bar_device' do
-      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(power_event)).once
-    end
+    it_behaves_like 'a group event', Wizrb::Shared::Events::PowerEvent, :power_off
   end
 
   describe '#reboot' do
-    let(:reboot_event) { Wizrb::Shared::Events::RebootEvent }
-
-    before { group.reboot }
-
-    it 'dispatches the event to foo_device' do
-      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(reboot_event)).once
-    end
-
-    it 'dispatches the event to bar_device' do
-      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(reboot_event)).once
-    end
+    it_behaves_like 'a group event', Wizrb::Shared::Events::RebootEvent, :reboot
   end
 
   describe '#reset' do
-    let(:reset_event) { Wizrb::Shared::Events::ResetEvent }
-
-    before { group.reset }
-
-    it 'dispatches the event to foo_device' do
-      expect(foo_device).to have_received(:dispatch_event).with(an_instance_of(reset_event)).once
-    end
-
-    it 'dispatches the event to bar_device' do
-      expect(bar_device).to have_received(:dispatch_event).with(an_instance_of(reset_event)).once
-    end
+    it_behaves_like 'a group event', Wizrb::Shared::Events::ResetEvent, :reset
   end
 
   describe '#dispatch_event' do

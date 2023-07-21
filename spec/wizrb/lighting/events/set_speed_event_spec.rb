@@ -6,6 +6,10 @@ RSpec.describe Wizrb::Lighting::Events::SetSpeedEvent do
   context 'with valid value' do
     let(:value) { described_class::MAX_VALUE - described_class::MIN_VALUE }
 
+    it 'is an instance of Wizrb::Shared::Events::Base' do
+      expect(event).to be_a(Wizrb::Shared::Events::Base)
+    end
+
     it 'does not raise an error' do
       expect { event }.not_to raise_error
     end

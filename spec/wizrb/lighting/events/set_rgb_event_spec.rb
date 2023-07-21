@@ -8,6 +8,10 @@ RSpec.describe Wizrb::Lighting::Events::SetRgbEvent do
     let(:green) { described_class::MAX_VALUE - described_class::MIN_VALUE }
     let(:blue) { described_class::MAX_VALUE - described_class::MIN_VALUE }
 
+    it 'is an instance of Wizrb::Shared::Events::Base' do
+      expect(event).to be_a(Wizrb::Shared::Events::Base)
+    end
+
     it 'does not raise an error' do
       expect { event }.not_to raise_error
     end
