@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../shared/events/base'
+require_relative "../../shared/events/base"
 
 module Wizrb
   module Lighting
@@ -11,7 +11,7 @@ module Wizrb
 
         def initialize(value)
           validate!(value)
-          super(method: 'setState', params: { temp: value })
+          super(method: "setState", params: {temp: value})
         end
 
         private
@@ -21,7 +21,7 @@ module Wizrb
             raise ArgumentError, "Temperature must be between #{MIN_VALUE} and #{MAX_VALUE} kelvin"
           end
 
-          raise ArgumentError, 'Temperature must be divisible by 100' unless value % 100 == 0
+          raise ArgumentError, "Temperature must be divisible by 100" unless value % 100 == 0
         end
       end
     end

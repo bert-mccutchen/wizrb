@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'socket'
-require_relative '../../shared/products/device'
-require_relative '../state'
+require "json"
+require "socket"
+require_relative "../../shared/products/device"
+require_relative "../state"
 
 module Wizrb
   module Lighting
@@ -14,7 +14,7 @@ module Wizrb
         end
 
         def white_range
-          @white_range ||= (primary_white_range || secondary_white_range || tertiary_white_range)
+          @white_range ||= primary_white_range || secondary_white_range || tertiary_white_range
         end
 
         def brightness(value)
@@ -48,15 +48,15 @@ module Wizrb
         private
 
         def primary_white_range
-          user_config&.dig('whiteRange')
+          user_config&.dig("whiteRange")
         end
 
         def secondary_white_range
-          model_config&.dig('extRange') || model_config&.dig('cctRange')
+          model_config&.dig("extRange") || model_config&.dig("cctRange")
         end
 
         def tertiary_white_range
-          user_config&.dig('extRange') || user_config&.dig('cctRange')
+          user_config&.dig("extRange") || user_config&.dig("cctRange")
         end
       end
     end

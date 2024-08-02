@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../shared/discover'
-require_relative 'group'
-require_relative 'products/dimable_light'
-require_relative 'products/tunable_light'
-require_relative 'products/rgb_light'
+require_relative "../shared/discover"
+require_relative "group"
+require_relative "products/dimable_light"
+require_relative "products/tunable_light"
+require_relative "products/rgb_light"
 
 module Wizrb
   module Lighting
@@ -13,10 +13,10 @@ module Wizrb
 
       def parse_response(data, addr)
         response = JSON.parse(data)
-        return unless response.dig('result', 'success') && addr[1] && addr[2]
+        return unless response.dig("result", "success") && addr[1] && addr[2]
 
         resolve_device(ip: addr[2], port: addr[1])
-      rescue StandardError
+      rescue
         nil
       end
 

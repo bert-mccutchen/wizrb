@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../shared/events/base'
+require_relative "../../shared/events/base"
 
 module Wizrb
   module Lighting
@@ -10,10 +10,10 @@ module Wizrb
         MAX_VALUE = 255
 
         def initialize(red, green, blue)
-          validate_color!('Red', red)
-          validate_color!('Green', green)
-          validate_color!('Blue', blue)
-          super(method: 'setState', params: { r: red, g: green, b: blue })
+          validate_color!("Red", red)
+          validate_color!("Green", green)
+          validate_color!("Blue", blue)
+          super(method: "setState", params: {r: red, g: green, b: blue})
         end
 
         private

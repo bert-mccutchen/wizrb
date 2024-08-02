@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'json'
-require 'socket'
-require_relative '../connection'
-require_relative '../state'
-require_relative '../events/base'
-require_relative '../events/power_event'
-require_relative '../events/reboot_event'
-require_relative '../events/refresh_event'
-require_relative '../events/reset_event'
+require "json"
+require "socket"
+require_relative "../connection"
+require_relative "../state"
+require_relative "../events/base"
+require_relative "../events/power_event"
+require_relative "../events/reboot_event"
+require_relative "../events/refresh_event"
+require_relative "../events/reset_event"
 
 module Wizrb
   module Shared
@@ -24,19 +24,19 @@ module Wizrb
         end
 
         def system_config
-          @system_config ||= dispatch({ method: 'getSystemConfig', params: {} })&.dig('result')
+          @system_config ||= dispatch({method: "getSystemConfig", params: {}})&.dig("result")
         end
 
         def model_config
-          @model_config ||= dispatch({ method: 'getModelConfig', params: {} })&.dig('result')
+          @model_config ||= dispatch({method: "getModelConfig", params: {}})&.dig("result")
         end
 
         def user_config
-          @user_config ||= dispatch({ method: 'getUserConfig', params: {} })&.dig('result')
+          @user_config ||= dispatch({method: "getUserConfig", params: {}})&.dig("result")
         end
 
         def module_name
-          @module_name ||= system_config&.dig('moduleName')
+          @module_name ||= system_config&.dig("moduleName")
         end
 
         def power_on
@@ -71,7 +71,7 @@ module Wizrb
 
         def dispatch_event(event)
           unless event.is_a?(Wizrb::Shared::Events::Base)
-            raise ArgumentError, 'Not an instance of Wizrb::Shared::Events::Base'
+            raise ArgumentError, "Not an instance of Wizrb::Shared::Events::Base"
           end
 
           dispatch(event)
@@ -80,12 +80,12 @@ module Wizrb
         def dispatch_events(*events)
           events.each do |event|
             unless event.is_a?(Wizrb::Shared::Events::Base)
-              raise ArgumentError, 'Not an instance of Wizrb::Shared::Events::Base'
+              raise ArgumentError, "Not an instance of Wizrb::Shared::Events::Base"
             end
           end
 
           params = events.reduce({}) { |h, e| h.merge(e.params) }
-          dispatch_event(Wizrb::Shared::Events::Base.new(method: 'setState', params: params))
+          dispatch_event(Wizrb::Shared::Events::Base.new(method: "setState", params: params))
         end
 
         private

@@ -2,19 +2,19 @@
 
 # rubocop:disable RSpec/EmptyExampleGroup
 RSpec.describe Wizrb::Shared::Connection do
-  describe '#connect', pending: 'TODO' do
+  describe "#connect", pending: "TODO" do
     # TODO
   end
 
-  describe '#send', pending: 'TODO' do
+  describe "#send", pending: "TODO" do
     # TODO
   end
 
-  describe '#receive', pending: 'TODO' do
+  describe "#receive", pending: "TODO" do
     # TODO
   end
 
-  describe '#test', pending: 'TODO' do
+  describe "#test", pending: "TODO" do
     # TODO
   end
 end

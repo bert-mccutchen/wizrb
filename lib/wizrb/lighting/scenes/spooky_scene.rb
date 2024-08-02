@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'scene'
+require_relative "scene"
 
 module Wizrb
   module Lighting
@@ -34,7 +34,7 @@ module Wizrb
               next if Random.rand > 0.25
 
               dispatch(BLACKOUT_EVENTS, sync: @sync)
-              sleep(Random.rand > 0.98 ? 3 : 0.125)
+              sleep((Random.rand > 0.98) ? 3 : 0.125)
               dispatch(DEFAULT_STATE_EVENTS, sync: true)
             end
           end

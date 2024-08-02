@@ -1,24 +1,24 @@
 # frozen_string_literal: true
 
-require 'ipaddr'
-require 'socket'
-require 'json'
-require_relative 'group'
-require_relative 'products/device'
+require "ipaddr"
+require "socket"
+require "json"
+require_relative "group"
+require_relative "products/device"
 
 module Wizrb
   module Shared
     class Discover
-      MULTICAST_ADDR = '224.0.0.1'
-      BIND_ADDR = '0.0.0.0'
+      MULTICAST_ADDR = "224.0.0.1"
+      BIND_ADDR = "0.0.0.0"
       PORT = 38_899
       REGISTRATION_MESSAGE = {
-        method: 'registration',
+        method: "registration",
         params: {
-          phoneMac: 'ABCDEFGHIJKL',
+          phoneMac: "ABCDEFGHIJKL",
           register: false,
-          phoneIp: '1.2.3.4',
-          id: '1'
+          phoneIp: "1.2.3.4",
+          id: "1"
         }
       }.to_json
 
@@ -40,11 +40,11 @@ module Wizrb
       end
 
       def home(id)
-        all(filters: { 'homeId' => id })
+        all(filters: {"homeId" => id})
       end
 
       def room(id)
-        all(filters: { 'roomId' => id })
+        all(filters: {"roomId" => id})
       end
 
       def self.all(wait: 2, filters: {})
@@ -101,10 +101,10 @@ module Wizrb
 
       def parse_response(data, addr)
         response = JSON.parse(data)
-        return unless response.dig('result', 'success') && addr[1] && addr[2]
+        return unless response.dig("result", "success") && addr[1] && addr[2]
 
         Wizrb::Shared::Products::Device.new(ip: addr[2], port: addr[1])
-      rescue StandardError
+      rescue
         nil
       end
 
