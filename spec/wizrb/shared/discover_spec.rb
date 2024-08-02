@@ -2,12 +2,12 @@
 
 RSpec.describe Wizrb::Shared::Discover do
   # rubocop:disable RSpec/EmptyExampleGroup
-  xdescribe '#all' do
+  describe "#all", pending: "TODO" do
     # TODO
   end
   # rubocop:enable RSpec/EmptyExampleGroup
 
-  describe '#home' do
+  describe "#home" do
     let(:discoverer) { described_class.new }
 
     before do
@@ -15,12 +15,12 @@ RSpec.describe Wizrb::Shared::Discover do
       discoverer.home(1234)
     end
 
-    it 'calls #all with the homeId filter' do
-      expect(discoverer).to have_received(:all).with(filters: { 'homeId' => 1234 }).once
+    it "calls #all with the homeId filter" do
+      expect(discoverer).to have_received(:all).with(filters: {"homeId" => 1234}).once
     end
   end
 
-  describe '#room' do
+  describe "#room" do
     let(:discoverer) { described_class.new }
 
     before do
@@ -28,8 +28,8 @@ RSpec.describe Wizrb::Shared::Discover do
       discoverer.room(5678)
     end
 
-    it 'calls #all with the roomId filter' do
-      expect(discoverer).to have_received(:all).with(filters: { 'roomId' => 5678 }).once
+    it "calls #all with the roomId filter" do
+      expect(discoverer).to have_received(:all).with(filters: {"roomId" => 5678}).once
     end
   end
 end

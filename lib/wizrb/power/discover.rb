@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../shared/discover'
-require_relative 'group'
-require_relative 'products/smart_plug'
+require_relative "../shared/discover"
+require_relative "group"
+require_relative "products/smart_plug"
 
 module Wizrb
   module Power
@@ -11,10 +11,10 @@ module Wizrb
 
       def parse_response(data, addr)
         response = JSON.parse(data)
-        return unless response.dig('result', 'success') && addr[1] && addr[2]
+        return unless response.dig("result", "success") && addr[1] && addr[2]
 
         resolve_device(ip: addr[2], port: addr[1])
-      rescue StandardError
+      rescue
         nil
       end
 

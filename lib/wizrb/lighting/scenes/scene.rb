@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../group'
+require_relative "../group"
 
 module Wizrb
   module Lighting
@@ -35,25 +35,27 @@ module Wizrb
 
         protected
 
-        def before_start; end
-
-        def step
-          raise Wizrb::Error, 'You failed to implement #step on your scene'
+        def before_start
         end
 
-        def after_stop; end
+        def step
+          raise Wizrb::Error, "You failed to implement #step on your scene"
+        end
+
+        def after_stop
+        end
 
         private
 
         def validate!(value)
           return if value.is_a?(Wizrb::Lighting::Group)
 
-          raise Wizrb::Error, 'Scenes can only be activated on lighting groups'
+          raise Wizrb::Error, "Scenes can only be activated on lighting groups"
         end
 
         def save_state
           @state_events = @group.map do |device|
-            Wizrb::Shared::Events::Base.new(method: 'setState', params: device.refresh.state)
+            Wizrb::Shared::Events::Base.new(method: "setState", params: device.refresh.state)
           end
         end
 

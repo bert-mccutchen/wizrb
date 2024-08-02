@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'json'
+require "json"
 
 module Wizrb
   module Shared
@@ -14,7 +14,7 @@ module Wizrb
         end
 
         def to_json(*_args)
-          @to_json ||= { method: @method, params: @params }.to_json
+          @to_json ||= {method: @method, params: @params}.to_json
         end
       end
     end

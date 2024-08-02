@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../../shared/events/base'
+require_relative "../../shared/events/base"
 
 module Wizrb
   module Lighting
@@ -11,7 +11,7 @@ module Wizrb
 
         def initialize(value)
           validate!(value)
-          super(method: 'setState', params: { c: value })
+          super(method: "setState", params: {c: value})
         end
 
         private

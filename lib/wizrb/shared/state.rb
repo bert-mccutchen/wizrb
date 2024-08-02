@@ -6,11 +6,11 @@ module Wizrb
       STATE_KEYS = %i[state].freeze
 
       def initialize
-        @state = { state: false }
+        @state = {state: false}
       end
 
       def parse!(response)
-        result = response&.dig('result')
+        result = response&.dig("result")
         return unless result
 
         @state = result.transform_keys(&:to_sym).slice(*STATE_KEYS)

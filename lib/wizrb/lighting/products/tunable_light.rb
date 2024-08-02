@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'light'
+require_relative "light"
 
 module Wizrb
   module Lighting
     module Products
       class TunableLight < Wizrb::Lighting::Products::Light
-        MODULE_NAME_IDENTIFIER = 'TW'
+        MODULE_NAME_IDENTIFIER = "TW"
         FEATURES = {
           brightness: true,
           color_temp: true,

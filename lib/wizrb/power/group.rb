@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../shared/group'
+require_relative "../shared/group"
 
 module Wizrb
   module Power

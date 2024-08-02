@@ -6,7 +6,7 @@ module Wizrb
       STATE_KEYS = %i[state w c r g b temp dimming speed sceneId].freeze
 
       def parse!(response)
-        result = response&.dig('result')
+        result = response&.dig("result")
         return unless result
 
         @state = result.transform_keys(&:to_sym).slice(*STATE_KEYS)
@@ -22,7 +22,7 @@ module Wizrb
       end
 
       def rgb
-        { red: @state[:r], green: @state[:g], blue: @state[:b] }
+        {red: @state[:r], green: @state[:g], blue: @state[:b]}
       end
 
       def color_temp

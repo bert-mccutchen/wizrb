@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'events/base'
-require_relative 'events/power_event'
-require_relative 'events/reboot_event'
-require_relative 'events/refresh_event'
-require_relative 'events/reset_event'
+require_relative "events/base"
+require_relative "events/power_event"
+require_relative "events/reboot_event"
+require_relative "events/refresh_event"
+require_relative "events/reset_event"
 
 module Wizrb
   module Shared
@@ -17,8 +17,8 @@ module Wizrb
         @devices = devices
       end
 
-      def each(&block)
-        @devices.each(&block)
+      def each(&)
+        @devices.each(&)
       end
 
       def power_on
@@ -39,7 +39,7 @@ module Wizrb
 
       def dispatch_event(event)
         unless event.is_a?(Wizrb::Shared::Events::Base)
-          raise ArgumentError, 'Not an instance of Wizrb::Shared::Events::Base'
+          raise ArgumentError, "Not an instance of Wizrb::Shared::Events::Base"
         end
 
         dispatch(event)
@@ -48,12 +48,12 @@ module Wizrb
       def dispatch_events(*events)
         events.each do |event|
           unless event.is_a?(Wizrb::Shared::Events::Base)
-            raise ArgumentError, 'Not an instance of Wizrb::Shared::Events::Base'
+            raise ArgumentError, "Not an instance of Wizrb::Shared::Events::Base"
           end
         end
 
         params = events.reduce({}) { |h, e| h.merge(e.params) }
-        dispatch_event(Wizrb::Shared::Events::Base.new(method: 'setState', params: params))
+        dispatch_event(Wizrb::Shared::Events::Base.new(method: "setState", params: params))
       end
 
       private

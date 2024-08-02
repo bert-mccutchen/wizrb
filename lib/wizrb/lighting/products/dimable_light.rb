@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require_relative 'light'
+require_relative "light"
 
 module Wizrb
   module Lighting
     module Products
       class DimableLight < Wizrb::Lighting::Products::Light
-        MODULE_NAME_IDENTIFIER = 'DW'
+        MODULE_NAME_IDENTIFIER = "DW"
         FEATURES = {
           brightness: true,
           color_temp: false,
